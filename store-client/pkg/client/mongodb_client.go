@@ -559,14 +559,14 @@ func (c *MongoDBClient) buildStructFieldUpdates(basePath string, status interfac
 	if healthStatus.QuarantineFinishTimestamp != nil {
 		t := *healthStatus.QuarantineFinishTimestamp
 		updateFields[basePath+".quarantinefinishtimestamp"] = map[string]interface{}{
-			"seconds": t.Unix(), "nanos": int32(t.Nanosecond()),
+			"seconds": t.Unix(), "nanos": int32(t.Nanosecond()), //nolint:gosec // Nanosecond() returns 0-999999999, fits int32
 		}
 	}
 
 	if healthStatus.DrainFinishTimestamp != nil {
 		t := *healthStatus.DrainFinishTimestamp
 		updateFields[basePath+".drainfinishtimestamp"] = map[string]interface{}{
-			"seconds": t.Unix(), "nanos": int32(t.Nanosecond()),
+			"seconds": t.Unix(), "nanos": int32(t.Nanosecond()), //nolint:gosec // Nanosecond() returns 0-999999999, fits int32
 		}
 	}
 
@@ -579,7 +579,7 @@ func (c *MongoDBClient) buildStructFieldUpdates(basePath string, status interfac
 	if healthStatus.LastRemediationTimestamp != nil {
 		t := *healthStatus.LastRemediationTimestamp
 		updateFields[basePath+".lastremediationtimestamp"] = map[string]interface{}{
-			"seconds": t.Unix(), "nanos": int32(t.Nanosecond()),
+			"seconds": t.Unix(), "nanos": int32(t.Nanosecond()), //nolint:gosec // Nanosecond() returns 0-999999999, fits int32
 		}
 	}
 
