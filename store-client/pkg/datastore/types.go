@@ -16,6 +16,8 @@ package datastore
 
 import (
 	"time"
+
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // DataStoreProvider defines the supported datastore types
@@ -84,11 +86,11 @@ type OperationStatus struct {
 // HealthEventStatus represents status of a health event
 type HealthEventStatus struct {
 	NodeQuarantined           *Status         `json:"nodequarantined"`
-	QuarantineFinishTimestamp *time.Time      `json:"quarantinefinishtimestamp,omitempty"`
+	QuarantineFinishTimestamp *timestamppb.Timestamp `json:"quarantinefinishtimestamp,omitempty"`
 	UserPodsEvictionStatus    OperationStatus `json:"userpodsevictionstatus"`
-	DrainFinishTimestamp      *time.Time      `json:"drainfinishtimestamp,omitempty"`
+	DrainFinishTimestamp      *timestamppb.Timestamp `json:"drainfinishtimestamp,omitempty"`
 	FaultRemediated           *bool           `json:"faultremediated"`
-	LastRemediationTimestamp  *time.Time      `json:"lastremediationtimestamp,omitempty"`
+	LastRemediationTimestamp  *timestamppb.Timestamp `json:"lastremediationtimestamp,omitempty"`
 }
 
 // HealthEventWithStatus wraps a health event with status information

@@ -22,6 +22,7 @@ import (
 	"strings"
 	"time"
 
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"k8s.io/client-go/util/workqueue"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/builder"
@@ -442,7 +443,7 @@ func (r *FaultRemediationReconciler) updateNodeRemediatedStatus(
 	// If remediation was successful, set the timestamp
 	if nodeRemediatedStatus {
 		now := time.Now().UTC()
-		status.LastRemediationTimestamp = &now
+		status.LastRemediationTimestamp = timestamppb.New(now)
 	}
 
 	// Use the healthEventStore to update the status with retries
