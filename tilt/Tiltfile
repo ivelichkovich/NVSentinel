@@ -240,7 +240,6 @@ local_resource(
 
 k8s_resource(
     'janitor',
-    resource_deps=['wait-for-janitor-cert'],
 )
 
 k8s_resource(
